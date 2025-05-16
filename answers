@@ -1,0 +1,70 @@
+Assignment 1: Design Your Own Class — Superhero
+# Base class
+class Superhero:
+    def __init__(self, name, power, city):
+        self.name = name
+        self.power = power
+        self.city = city
+    
+    def introduce(self):
+        print(f"I am {self.name}, protector of {self.city}!")
+    
+    def use_power(self):
+        print(f"{self.name} uses {self.power}!")
+
+# Inherited class with encapsulation example
+class FlyingSuperhero(Superhero):
+    def __init__(self, name, power, city, flight_speed):
+        super().__init__(name, power, city)
+        self.__flight_speed = flight_speed  # private attribute
+    
+    def fly(self):
+        print(f"{self.name} is flying at {self.__flight_speed} km/h!")
+    
+    # Encapsulation: getter for flight speed
+    def get_flight_speed(self):
+        return self.__flight_speed
+    
+    # Encapsulation: setter for flight speed
+    def set_flight_speed(self, speed):
+        if speed > 0:
+            self.__flight_speed = speed
+        else:
+            print("Speed must be positive!")
+
+# Usage
+hero1 = Superhero("Shadowstrike", "Invisibility", "Gotham")
+hero1.introduce()
+hero1.use_power()
+
+hero2 = FlyingSuperhero("Skyhawk", "Super Strength", "Metropolis", 250)
+hero2.introduce()
+hero2.use_power()
+hero2.fly()
+print("Current flight speed:", hero2.get_flight_speed())
+hero2.set_flight_speed(300)
+hero2.fly()
+
+
+Activity 2: Polymorphism Challenge — Vehicles with move()
+class Car:
+    def move(self):
+        print("Driving 🚗")
+
+class Plane:
+    def move(self):
+        print("Flying ✈️")
+
+class Boat:
+    def move(self):
+        print("Sailing ⛵")
+
+# Function that takes any vehicle and calls move()
+def make_it_move(vehicle):
+    vehicle.move()
+
+# Usage
+vehicles = [Car(), Plane(), Boat()]
+
+for v in vehicles:
+    make_it_move(v)
